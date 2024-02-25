@@ -1,0 +1,13 @@
+FROM python:3.12.2-alpine
+
+WORKDIR /app
+
+ADD . /app
+
+RUN pip install -r requirements-tests.txt
+
+EXPOSE 8000
+
+#CMD pytest -sv --html=index.html tests/items_api_tests.py; python -m http.server
+
+CMD pytest -sv --html=tests-report/pytest-report_$(date '+%Y-%m-%d_%H-%M-%S').html tests/items_api_tests.py

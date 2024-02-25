@@ -1,0 +1,13 @@
+FROM python:3.12.2-alpine
+
+WORKDIR /app
+
+ADD . /app
+
+RUN pip install -r requirements-server.txt
+
+EXPOSE 5000
+
+ENV FLASK_APP=server/server.py
+
+CMD python -m flask run --host=0.0.0.0
